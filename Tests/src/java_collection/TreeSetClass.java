@@ -2,8 +2,11 @@ package java_collection;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class TreeSetClass {
 
@@ -13,30 +16,9 @@ public class TreeSetClass {
 //	SortedSet<E>
 //	TreeSet<E> is the class
 
-//	6. ⚡ Java 8+ Stream & Lambda Support
-//	stream()
-//
-//	parallelStream()
-//
-//	filter(...)
-//
-//	map(...)
-//
-//	collect(...)
-//
-//	anyMatch(...)
-//
-//	allMatch(...)
-//
-//	noneMatch(...)
-//
-//	reduce(...)
-//
-//	forEach(...)
-
 	public static void main(String[] args) {
 
-		utilityOnTreeSet();
+		java8OnTreeSet();
 	}
 
 	public static void basicOperationOnTreeSet() {
@@ -192,6 +174,67 @@ public class TreeSetClass {
 // 3.		subSet(from, to)
 		SortedSet<Student> subSet = treeSet.subSet(new Student(0, ""), new Student(2, ""));
 		System.out.println("SubSet :: " + subSet);
+	}
+
+	public static void java8OnTreeSet() {
+
+//	6.Java 8+ Stream & Lambda Support
+//		stream()
+//		parallelStream()
+//		filter(...)
+//		map(...)
+//		collect(...)
+//		anyMatch(...)
+//		allMatch(...)
+//		noneMatch(...)
+//		reduce(...)
+//		forEach(...)
+
+		TreeSet<String> treeSet = new TreeSet<String>();
+		treeSet.add("Nilesh");
+		treeSet.add("Dhawale");
+
+// 1.		stream()
+		treeSet.stream()
+				.forEach(ss -> System.out.println("Stram :: " + ss + " Thread :: " + Thread.currentThread().getName()));
+
+// 2.		parallelStream()
+		treeSet.parallelStream().forEach(
+				ss -> System.out.println("Parallel Stream :: " + ss + " Tread :: " + Thread.currentThread().getName()));
+
+// 3.		filter(...)
+		List<String> collect = treeSet.stream().filter(ss -> ss.equals("Nilesh")).collect(Collectors.toList());
+		System.out.println("Filter :: " + collect);
+
+// 4.		map(...)
+		List<String> collect2 = treeSet.stream().map(ss -> ss + " Updates").collect(Collectors.toList());
+		System.out.println("Map :: " + collect2);
+
+// 5.		collect(...)
+		List<String> collect3 = treeSet.stream().map(ss -> ss + "--").collect(Collectors.toList());
+		System.out.println("Collect :: " + collect3);
+
+// 6.		anyMatch(...)
+		boolean anyMatch = treeSet.stream().anyMatch(ss -> "Dhawale".equals(ss));
+		System.out.println("Dhawale Present :: " + anyMatch);
+
+// 7.		allMatch(...)
+		boolean allMatch = treeSet.stream().allMatch(ss -> ss != null);
+		System.out.println("All Match :: " + allMatch);
+
+// 8.		noneMatch(...)
+		boolean noneMatch = treeSet.stream().noneMatch(ss -> ss == null);
+		System.out.println("None Match :: " + noneMatch);
+
+// 9.		reduce(...)
+		Optional<String> reduce = treeSet.stream().reduce((a, b) -> a + " " + b);
+		System.out.println("Reduce :: " + reduce.get());
+
+// 10.		forEach(...)
+		treeSet.forEach(ss -> {
+			System.out.println("For Each :: " + ss);
+		});
+
 	}
 
 }
