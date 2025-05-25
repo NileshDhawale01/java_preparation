@@ -147,7 +147,7 @@ public class TreeMapClass {
 		treeMap.merge(100, "If Present Updates", (key, val) -> val = "Merge Update");
 		System.out.println("Merge :: " + treeMap);
 
-// 10.		clear()
+// 10.		clear() 
 		treeMap.clear();
 		System.out.println("Clear :: " + treeMap);
 	}
