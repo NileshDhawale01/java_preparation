@@ -1,5 +1,8 @@
 package java_collection;
 
+import java.util.Collection;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class TreeMapClass {
@@ -8,86 +11,9 @@ public class TreeMapClass {
 //	SortedMap<K, V>
 //	TreeMap<K, V> is a class
 
-//	2. Search & Check
-//	get(Object key)
-//
-//	containsKey(Object key)
-//
-//	containsValue(Object value)
-//
-//	isEmpty()
-//
-//	size()
-//
-//	getOrDefault(Object key, V defaultValue)
-//
-//	3. Iteration
-//	entrySet()
-//
-//	keySet()
-//
-//	values()
-//
-//	forEach(BiConsumer)
-//
-//	4. Bulk Operations
-//	putAll(Map<? extends K, ? extends V> map)
-//
-//	replaceAll(BiFunction<K, V, V>)
-//
-//	5. Utility / Navigation
-//	firstKey(), lastKey()
-//
-//	firstEntry(), lastEntry()
-//
-//	ceilingKey(K key), ceilingEntry(K key)
-//
-//	floorKey(K key), floorEntry(K key)
-//
-//	higherKey(K key), higherEntry(K key)
-//
-//	lowerKey(K key), lowerEntry(K key)
-//
-//	pollFirstEntry(), pollLastEntry()
-//
-//	descendingKeySet()
-//
-//	descendingMap()
-//
-//	headMap(K toKey)
-//
-//	headMap(K toKey, boolean inclusive)
-//
-//	tailMap(K fromKey)
-//
-//	tailMap(K fromKey, boolean inclusive)
-//
-//	subMap(K fromKey, K toKey)
-//
-//	subMap(K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
-//
-//	comparator()
-//
-//	6. Java 8+ Stream & Lambda Support
-//	forEach((k, v) -> {...})
-//
-//	entrySet().stream()
-//
-//	keySet().stream()
-//
-//	values().stream()
-//
-//	entrySet().parallelStream()
-//
-//	Map.Entry.comparingByKey()
-//
-//	Map.Entry.comparingByValue()
-//
-//	entrySet().stream().filter(...).collect(...)
-
 	public static void main(String[] args) {
 
-		basicOperationOnTreeMap();
+		java8OnTreeMap();
 	}
 
 	public static void basicOperationOnTreeMap() {
@@ -150,6 +76,180 @@ public class TreeMapClass {
 // 10.		clear()
 		treeMap.clear();
 		System.out.println("Clear :: " + treeMap);
-		
+
+	}
+
+	public static void searchOnTreeMap() {
+
+//	2. Search & Check
+//		get(Object key)
+//		containsKey(Object key)
+//		containsValue(Object value)
+//		isEmpty()
+//		size()
+//		getOrDefault(Object key, V defaultValue)
+
+		TreeMap<Integer, String> treeMap = new TreeMap<>();
+		treeMap.put(1, "Nilesh");
+		treeMap.put(2, "Dhawale");
+
+// 1.		get(Object key) // if key not present returns null
+		String string = treeMap.get(1);
+		System.out.println("Get :: " + string);
+
+// 2.		containsKey(Object key)
+		boolean containsKey = treeMap.containsKey(1);
+		System.out.println("Contains Key :: " + containsKey);
+
+// 3.		containsValue(Object value)
+		boolean containsValue = treeMap.containsValue("Nilesh");
+		System.out.println("Contain Value :: " + containsValue);
+
+// 4.		isEmpty()
+		boolean empty = treeMap.isEmpty();
+		System.out.println("Is Empty :: " + empty);
+
+// 5.		size()
+		int size = treeMap.size();
+		System.out.println("Size :: " + size);
+
+// 6.		getOrDefault(Object key, V defaultValue)
+		String getOrDefault = treeMap.getOrDefault(10, "Default Value");
+		System.out.println("Get or Default :: " + getOrDefault);
+	}
+
+	public static void iterationOnTreeMap() {
+
+//	3. Iteration
+//		entrySet()
+//		keySet()
+//		values()
+//		forEach(BiConsumer)
+
+		TreeMap<Integer, String> treeMap = new TreeMap<>();
+		treeMap.put(1, "Nilesh");
+		treeMap.put(2, "Dhawale");
+
+// 1.		entrySet()
+		Set<Entry<Integer, String>> entrySet = treeMap.entrySet();
+		entrySet.stream()
+				.forEach(ss -> System.out.println("Tree Map Key :: " + ss.getKey() + " Value :: " + ss.getValue()));
+
+// 2.		keySet()
+		Set<Integer> keySet = treeMap.keySet();
+		keySet.stream().forEach(ss -> {
+			System.out.println("Key Set :: " + ss);
+		});
+
+// 3.		values()
+		Collection<String> values = treeMap.values();
+		values.stream().forEach(ss -> System.out.println("Values :: " + ss));
+
+// 4.		forEach(BiConsumer)
+		treeMap.forEach((key, value) -> System.out.println("For Each Key :: " + key + " Value :: " + value));
+	}
+
+	public static void bulkOperationOnTreeMap() {
+
+//	4. Bulk Operations
+//		putAll(Map<? extends K, ? extends V> map)
+//		replaceAll(BiFunction<K, V, V>)
+
+	}
+
+	public static void utilityOnTreeMap() {
+
+//	5. Utility / Navigation
+//		firstKey(), lastKey()
+//		firstEntry(), lastEntry()
+//		ceilingKey(K key), ceilingEntry(K key)
+//		floorKey(K key), floorEntry(K key)
+//		higherKey(K key), higherEntry(K key)
+//		lowerKey(K key), lowerEntry(K key)
+//		pollFirstEntry(), pollLastEntry()
+//		descendingKeySet()
+//		descendingMap()
+//		headMap(K toKey)
+//		headMap(K toKey, boolean inclusive)
+//		tailMap(K fromKey)
+//		tailMap(K fromKey, boolean inclusive)
+//		subMap(K fromKey, K toKey)
+//		subMap(K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)
+//		comparator()
+
+		TreeMap<Integer, String> treeMap = new TreeMap<>();
+		treeMap.put(1, "Nilesh");
+		treeMap.put(2, "Dhawale");
+
+// 1.		firstKey(), lastKey()
+		Integer firstKey = treeMap.firstKey();
+		Integer lastKey = treeMap.lastKey();
+		System.out.println("TreeMap First Key :: " + firstKey + " Last Key :: " + lastKey);
+
+// 2.		firstEntry(), lastEntry()
+		Entry<Integer, String> firstEntry = treeMap.firstEntry();
+		Entry<Integer, String> lastEntry = treeMap.lastEntry();
+
+		System.out.println("First Entry Key :: " + firstEntry.getKey() + " Value :: " + firstEntry.getValue());
+		System.out.println("Last Entry Key :: " + lastEntry.getKey() + " Value :: " + lastEntry.getValue());
+
+// 3.		ceilingKey(K key), ceilingEntry(K key)
+//		if key present return it
+//		if not return next greater key
+//		if next greater not present return null
+		Integer ceilingKey = treeMap.ceilingKey(1);
+		System.out.println("Ceiling Key :: " + ceilingKey);
+
+		Entry<Integer, String> ceilingEntry = treeMap.ceilingEntry(1);
+		System.out.println("Ceiling Entry :: " + ceilingEntry.getKey() + " Value :: " + ceilingEntry.getValue());
+
+// 4.		floorKey(K key), floorEntry(K key)
+//		if key present return it
+//		if not return privies small
+//		if privies small not present return	null
+		Entry<Integer, String> floorEntry = treeMap.floorEntry(1);
+		System.out.println(floorEntry.getKey() + " Value :: " + floorEntry.getValue());
+
+		Integer floorKey = treeMap.floorKey(2);
+		System.out.println("Floor Key :: " + floorKey);
+	}
+
+	public static void java8OnTreeMap() {
+
+//	6. Java 8+ Stream & Lambda Support
+//		forEach((k, v) -> {...})
+//		entrySet().stream()
+//		keySet().stream()
+//		values().stream()
+//		entrySet().parallelStream()
+//		Map.Entry.comparingByKey()
+//		Map.Entry.comparingByValue()
+//		entrySet().stream().filter(...).collect(...)
+
+		TreeMap<Integer, String> treeMap = new TreeMap<>();
+		treeMap.put(1, "Nilesh");
+		treeMap.put(2, "Dhawale");
+
+// 1.		forEach((k, v) -> {...})
+		treeMap.forEach((key, val) -> {
+			System.out.println("Tree Map Key :: " + key + " value :: " + val);
+		});
+
+// 2.		entrySet().stream()
+		Set<Entry<Integer, String>> entrySet = treeMap.entrySet();
+		entrySet.stream()
+				.forEach(ss -> System.out.println("Entry Set Key :: " + ss.getKey() + " value :: " + ss.getValue()));
+
+// 3.		keySet().stream()
+		Set<Integer> keySet = treeMap.keySet();
+		keySet.stream().forEach(ss -> System.out.println("Key Set Key Is :: " + ss));
+
+// 4.		values().stream()
+		Collection<String> values = treeMap.values();
+		values.stream().forEach(ss -> System.out.println("Values :: " + ss));
+
+// 5.		entrySet().parallelStream()
+		treeMap.entrySet().parallelStream().forEach(ss -> System.out
+				.println(Thread.currentThread().getName() + " Key :: " + ss.getKey() + " value :: " + ss.getValue()));
 	}
 }
