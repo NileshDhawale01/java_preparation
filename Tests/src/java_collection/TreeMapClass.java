@@ -248,7 +248,7 @@ public class TreeMapClass {
 		Collection<String> values = treeMap.values();
 		values.stream().forEach(ss -> System.out.println("Values :: " + ss));
 
-// 5.		entrySet().parallelStream()
+// 5.		entrySet().parallelStream() 
 		treeMap.entrySet().parallelStream().forEach(ss -> System.out
 				.println(Thread.currentThread().getName() + " Key :: " + ss.getKey() + " value :: " + ss.getValue()));
 	}
